@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListMate.View.ShoppingItemDetail">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="bttnClose" Text="Close" Clicked="bttnClose_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="ItemHeader">
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="5,0,5,0" />
+            </Style>
+            <Style TargetType="Label" x:Key="Item">
+                <Setter Property="FontSize" Value="22" />                                
+            </Style>
+            <Style TargetType="StackLayout" x:Key="ItemStack">
+                <Setter Property="Margin" Value="10,0,0,0" />
+                <Setter Property="Orientation" Value="Horizontal" />
+            </Style>
+            <Style TargetType="Label" x:Key="ItemPurchasedLabel">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="BackgroundColor" Value="Green" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Text="{Binding ItemName}" HorizontalTextAlignment="Center" FontSize="28"/>
+            <Image x:Name="imgItemPicture" Grid.Row="1" HeightRequest="300" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Grid.Row="2" Text="Purchased" Style="{StaticResource ItemPurchasedLabel}" IsVisible="{Binding ItemPurchased}"/>
+            <StackLayout Grid.Row="3" Margin="0,5,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Style="{StaticResource ItemStack}">
+                        <Label Text="Price" Style="{StaticResource ItemHeader}"/>
+                        <Label Text="{Binding ItemPrice, StringFormat='${0:F2}'}" Style="{StaticResource Item}"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" Style="{StaticResource ItemStack}">
+                        <Label Text="Quantity" Style="{StaticResource ItemHeader}" />
+                        <Label Text="{Binding ItemQty}" Style="{StaticResource Item}" />
+                    </StackLayout>
+                </Grid>
+                <StackLayout Style="{StaticResource ItemStack}">
+                    <Label Text="Store" Style="{StaticResource ItemHeader}" />
+                    <Label Text="{Binding ItemStore}" Style="{StaticResource Item}" />
+                </StackLayout>
+                <StackLayout Style="{StaticResource ItemStack}">
+                    <Label Text="Category" Style="{StaticResource ItemHeader}" VerticalOptions="Center"/>
+                    <Label Text="{Binding ItemCategory}" Style="{StaticResource Item}" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button x:Name="bttnPurchaseItem" Text="Purchase" Clicked="bttnPurchaseItem_Clicked" />
+                    <Button x:Name="bttnItemLink" Text="Store page" Clicked="bttnItemLink_Clicked"/>
+                    <Button x:Name="bttnEditItem" Text="Edit" Clicked="bttnEditItem_Clicked"/>
+                    <Button x:Name="bttnDelItem" Text="Delete" Clicked="bttnDelItem_Clicked" />
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

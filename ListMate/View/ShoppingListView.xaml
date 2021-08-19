@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListMate.View.ShoppingListView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="HeaderText">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="DimGray" />
+                <Setter Property="Padding" Value="5,0,0,0" />
+                <Setter Property="HeightRequest" Value="50" />
+            </Style>
+            <Style TargetType="Label" x:Key="ItemName">
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="Padding" Value="5,0,0,0" />
+            </Style>
+            <Style TargetType="Label" x:Key="ItemFields">
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="Padding" Value="5,0,0,0" />
+            </Style>
+            <Style TargetType="Label" x:Key="PurchasedLabel">
+                <Setter Property="FontSize" Value="14" />                
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="Green" />
+                <Setter Property="HeightRequest" Value="20" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="bttnDelList" Text="Delete List" Clicked="bttnDelList_Clicked"/>        
+    </ContentPage.ToolbarItems>    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label x:Name="lblListName" Text="List Name" FontSize="24" Grid.ColumnSpan="2"/>
+                <StackLayout Grid.Row="1" Orientation="Horizontal">
+                    <Label Text="Total Cost:"/>
+                    <Label x:Name="lblTotCost" />
+                </StackLayout>
+                <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                    <Label Text="Total Items:"  />
+                    <Label x:Name="lblItemCount" />
+                </StackLayout>
+            </Grid>
+            <ListView x:Name="lstItems" CachingStrategy="RecycleElement" ItemSelected="lstItems_ItemSelected" HasUnevenRows="True" Grid.Row="1">
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Key}" Style="{StaticResource HeaderText}"/>                                
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="21" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding _ProductImage}" Grid.RowSpan="2" WidthRequest="45" VerticalOptions="Center"></Image>
+                                <StackLayout BackgroundColor="LightGreen" Grid.RowSpan="2" IsVisible="{Binding ItemPurchased}" Grid.Column="1"/>
+                                <Label Text="{Binding ItemName}" Style="{StaticResource ItemName}" HeightRequest="30" Grid.Column="1"/>
+                                <Grid Grid.Row="1" Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding ItemStore}" Style="{StaticResource ItemFields}"/>
+                                    <Label Text="{Binding ItemQty, StringFormat='QTY: {0}'}" Grid.Column="1" Style="{StaticResource ItemFields}" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding ItemPrice, StringFormat='${0:F2}'}" Grid.Column="2" Style="{StaticResource ItemFields}" HorizontalTextAlignment="End"/>
+                                </Grid>
+                                <!--<Label Text="Purchased" IsVisible="{Binding ItemPurchased}" Grid.Row="2" Style="{StaticResource PurchasedLabel}"/>-->
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="bttnAddItem" Text="Add Item" Clicked="bttnAddItem_Clicked" Grid.Row="2"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

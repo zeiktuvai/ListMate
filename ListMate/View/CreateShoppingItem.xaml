@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListMate.View.CreateShoppingItem"
+             xmlns:local="clr-namespace:ListMate.Behaviors"
+             Title="Add Shopping List Item">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="bttnCancelItem" Text="Cancel" Clicked="bttnCancelItem_Clicked" />
+        <ToolbarItem x:Name="bttnSaveItem" Text="Save" Clicked="bttnSaveItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="tbxItemName" Placeholder="Item Name"></Entry>
+            <Entry x:Name="tbxItemPrice" Placeholder="Price">
+                <Entry.Behaviors>
+                    <local:NumericCurrencyValidationBehavior />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry x:Name="tbxItemQty" Placeholder="Quantity">
+                <Entry.Behaviors>
+                    <local:NumericValidationBehavior />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry x:Name="tbxItemStore" Placeholder="Store" />
+            <Entry x:Name="tbxItemURL" Placeholder="URL Link to store page" />
+            <Entry x:Name="tbxItemCat" Placeholder="Category" />
+            <Entry x:Name="tbxImageUrl" Placeholder="Image URL" />
+                <Label VerticalOptions="CenterAndExpand"/>
+            <Button x:Name="bttnSave" Text="Save" Clicked="bttnSave_Clicked"/>
+            
+        </StackLayout>
+        
+    </ContentPage.Content>    
+</ContentPage>
+

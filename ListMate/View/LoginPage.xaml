@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListMate.View.LoginPage"
+             BackgroundColor="#4c6187">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="ListMate"  FontSize="32" FontAttributes="Bold" TextColor="Black" Margin="0,20,0,0" HorizontalTextAlignment="Center"/>
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Label Text="please sign in" FontSize="18" TextColor="Black" HorizontalTextAlignment="Center"/>
+                <Frame Margin="20,0,20,0" Padding="20,10,20,10" CornerRadius="5" HasShadow="True" IsClippedToBounds="True">
+                    <StackLayout BackgroundColor="White"  >
+                        <Entry x:Name="tbxUserName" Placeholder="UserName" TextColor="Black" PlaceholderColor="Gray"/>
+                        <Entry x:Name="tbxUserPass" IsPassword="True" Placeholder="Password" TextColor="Black" PlaceholderColor="Gray" Visual="Default"/>
+                        <Button x:Name="bttnLogin" Text="Login" Clicked="bttnLogin_Clicked"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <Button x:Name="bttnTestCred" Text="test credentials" Clicked="bttnTestCred_Clicked" />
+            <Button x:Name="bttnCreateAcct" Text="create account" BackgroundColor="Transparent" Clicked="bttnCreateAcct_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
